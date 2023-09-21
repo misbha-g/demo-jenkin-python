@@ -1,6 +1,12 @@
 pipeline {
     agent any
     stages {
+         stage('Install Python') {
+            steps {
+                sh 'apt-get update && apt-get install -y python3 python3-pip'
+                sh 'pip3 install virtualenv'
+            }
+        }
         stage('Checkout') {
             steps {
                 // Check out the code from the Git repository

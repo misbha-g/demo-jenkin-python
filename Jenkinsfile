@@ -3,8 +3,11 @@ pipeline {
     stages {
          stage('Install Python') {
             steps {
-                sh 'apt-get update && apt-get install -y python3 python3-pip'
-                sh 'pip3 install virtualenv'
+                script {
+                    // Switch to the root user temporarily
+                    sh 'sudo apt-get update && sudo apt-get install -y python3 python3-pip'
+                    sh 'sudo pip3 install virtualenv'
+                }
             }
         }
         stage('Checkout') {
